@@ -1,2 +1,1 @@
-# goland-CRUD
-A basic CRUD app w/ routing in golang
+# SETUP FOR A BASIC CRUDD APP WITH GOLANG
