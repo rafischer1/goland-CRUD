@@ -1,7 +1,9 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
 )
@@ -15,4 +17,11 @@ func main() {
 	http.HandleFunc("/", handler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
+	//db commands
+	db, err := sql.Open("sql",
+		"golangTest")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
 }
