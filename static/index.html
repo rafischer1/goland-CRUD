@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible"
+      content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+      rel="stylesheet">
+    <!-- <link rel="stylesheet"
+      type="text/css"
+      href="./stylesheets/style.css"> -->
+    <style>
+      body {
+        background-color: teal;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        font-family: 'Nanum Gothic', sans-serif;
+        
+      }
+
+      input {
+        font-family: 'Nanum Gothic', sans-serif;
+        height: 30px;
+        width: 25%;
+      }
+
+      button {
+        background-color: #F3A3F4;
+        color: white;
+        border-radius: 10px;
+        font-size: 20px;
+        margin-bottom: 7px;
+        border: 2px solid black;
+      }
+
+      button:active {
+        background-color: pink;f
+      }
+
+      div.input {
+        font-weight: Bolder;
+        border: 2px solid white;
+        width: 50%;
+        margin-left: 25%;
+        border-radius: 10px;
+      }
+
+      div.allBooks {
+        margin-top: 10px;
+        font-weight: Bolder;
+        border: 2px solid white;
+        width: 50%;
+        margin-left: 25%;
+        border-radius: 10px;
+      }</style>
+
+    <title>Golang Test Page</title>
+  </head>
+
+  <body>
+    <h1>Golang Test Site / Book CRUD</h1>
+    <hr>
+
+    <div class="input">
+      <form action="">
+        <label for="text">Book title to add:</label>
+        <br>
+        <input type="text"
+          id="text"
+          placeholder="Type Here">
+        <div> <span id="value"></span></div>
+        <button type="submit">Add to DB</button>
+      </form>
+    </div>
+
+    <div class="allBooks">
+      <div id="allBooks">Display all books here</div>
+    </div>
+
+    <script src="./scripts/demo.js"></script>
+  </body>
+
+</html>

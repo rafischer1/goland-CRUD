@@ -1,0 +1,4 @@
+{
+	"Port": 3000,
+  "Connection_String": "postgres://artiefischer@localhost:5432/gotest-test?sslmode=disable"
+}
