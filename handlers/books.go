@@ -24,7 +24,7 @@ func GetAll(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("d: %+v", data)
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(vars["Content"]))
-	fmt.Fprint(w, "Content:", vars["Content"], data)
+	fmt.Fprintf(w, "Content:%s", vars["Content"], data)
 }
 
 //Rest of REST routes

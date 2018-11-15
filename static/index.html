@@ -83,8 +83,7 @@
       <div id="allBooks">Display all books here</div>
     </div>
     <script>
-      console.log("Hi")
-      let booksDiv = document.getElementById('allBooks')
+      let val
       document.addEventListener('DOMContentLoaded', () => {
         getAllBooks()
 
@@ -92,20 +91,31 @@
         p.addEventListener('keyup', (e) => {
           inputKeyUp(e)
         })
+
+        let submitBtn = document.getElementById('form')
+        submitBtn.addEventListener('submit', (e) => {
+          e.preventDefault()
+          val = e.target.elements[0].value
+
+          formSubmit(val)
+        })
       })
 
 
       //get all books function
       function getAllBooks() {
+        let booksDiv = document.getElementById('allBooks')
         axios.get('/books')
           .then((res) => {
             // handle success
             let books = res.data.split('Content:')[1]
-            console.log(books)
-            // res.data.forEach((book) => {
-            //   console.log(book)
-            // })
-            booksDiv.innerText = books
+            let booksTwo = books.split('%!(EXTRA []models.Book=')[1]
+
+            booksTwo.split(' ').forEach((book) => {
+              console.log(book)
+            })
+
+            booksDiv.innerText = booksTwo
           })
       }
 
@@ -115,11 +125,23 @@
         let span = document.getElementById("value")
         span.innerHTML = input.value
       }
+
+      //formSubmit function
+      function formSubmit(val) {
+        axios.post('/books', val)
+          .then((r) => {
+            // console.log('response', r)
+            if (r) {
+              alert(
+                `Post submitted: ${val}`
+              )
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
     </script>
-
-    <script src="./scripts/demo.js"
-      charset="utf-8"></script>
-
   </body>
 
 </html>
