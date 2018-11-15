@@ -9,6 +9,7 @@
       content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
       rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <!-- <link rel="stylesheet"
       type="text/css"
       href="./stylesheets/style.css"> -->
@@ -66,13 +67,14 @@
     <hr>
 
     <div class="input">
-      <form action="">
-        <label for="text">Book title to add:</label>
+      <form action=""
+        id="form">
+        <label for="text">Book title to add:<br><span id="value"></span></label>
         <br>
         <input type="text"
           id="text"
           placeholder="Type Here">
-        <div> <span id="value"></span></div>
+        <div> </div>
         <button type="submit">Add to DB</button>
       </form>
     </div>
@@ -80,8 +82,44 @@
     <div class="allBooks">
       <div id="allBooks">Display all books here</div>
     </div>
+    <script>
+      console.log("Hi")
+      let booksDiv = document.getElementById('allBooks')
+      document.addEventListener('DOMContentLoaded', () => {
+        getAllBooks()
 
-    <script src="./scripts/demo.js"></script>
+        let p = document.getElementById('text')
+        p.addEventListener('keyup', (e) => {
+          inputKeyUp(e)
+        })
+      })
+
+
+      //get all books function
+      function getAllBooks() {
+        axios.get('/books')
+          .then((res) => {
+            // handle success
+            let books = res.data.split('Content:')[1]
+            console.log(books)
+            // res.data.forEach((book) => {
+            //   console.log(book)
+            // })
+            booksDiv.innerText = books
+          })
+      }
+
+      //input keyup function
+      function inputKeyUp(e) {
+        let input = e.target
+        let span = document.getElementById("value")
+        span.innerHTML = input.value
+      }
+    </script>
+
+    <script src="./scripts/demo.js"
+      charset="utf-8"></script>
+
   </body>
 
 </html>

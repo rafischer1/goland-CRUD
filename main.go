@@ -35,7 +35,7 @@ func main() {
 	// http.Handle("/", http.FileServer(http.Dir("./static")))
 	// router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static")))
 	router.Handle("/", http.FileServer(http.Dir("./static/")))
-
+	router.Handle("static/", http.StripPrefix("static/", http.FileServer(http.Dir("static"))))
 
 	log.Println("Listening...")
 	http.ListenAndServe(":3000", router)

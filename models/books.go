@@ -7,8 +7,8 @@ import (
 )
 
 type Book struct {
-	id int 
-	title string
+	id int64 `json:"id"`
+	title string `json:"title"`
 }
 
 
@@ -40,26 +40,32 @@ func GetAllBooks() []Book {
 
 //REST of rest Book routes
 func PostBook() []Book {
-  fmt.Println("In the model")
+
   db, err := sql.Open("postgres", "user=artiefischer dbname=golangtest sslmode=disable")
   if err != nil {
     panic(err)
   }
-  
-  rows, err := db.Query("SELECT * FROM books")
-  
-  defer rows.Close()
-  var books []Book
-  for rows.Next() {
-    book := Book{}
-    rows.Scan(&book.id, &book.title)
-    books = append(books, book)
-  }
-  if err := rows.Err(); err != nil {
-    log.Fatal(err)
-  }
+var book []Book
+	rows, err := db.Query(
+	"INSERT INTO books (title) VALUES ($1)",
+	book,
+)
+defer rows.Close()
 
-  return books
+
+// fmt.Println("In the model", book)
+  // defer rows.Close()
+  // var books []Book
+  // for rows.Next() {
+  //   book := Book{}
+  //   rows.Scan(&book.id, &book.title)
+  //   books = append(books, book)
+  // }
+  // if err := rows.Err(); err != nil {
+  //   log.Fatal(err)
+  // }
+
+  return book
 }
 
 
